@@ -1,0 +1,245 @@
+.skeleton {
+    position: relative;
+    overflow: hidden;
+    background: #e5e7eb;
+    border-radius: 6px;
+}
+
+/* shimmer effect */
+.skeleton::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    height: 100%;
+    width: 150%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.5),
+            transparent);
+    animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        left: 100%;
+    }
+}
+
+.skeleton-banner {
+    height: 40px;
+    margin: 14px 0;
+}
+
+.skeleton-title {
+    height: 18px;
+    width: 220px;
+}
+
+.skeleton-title.small {
+    width: 160px;
+    margin-bottom: 10px;
+}
+
+.skeleton-label {
+    height: 12px;
+    width: 140px;
+    margin-bottom: 8px;
+}
+
+.skeleton-textarea {
+    height: 120px;
+    width: 100%;
+}
+
+.skeleton-select {
+    height: 40px;
+    width: 100%;
+}
+
+.skeleton-attach {
+    height: 40px;
+    width: 100%;
+}
+
+.skeleton-buttons {
+    height: 40px;
+    width: 200px;
+    margin-left: auto;
+    margin-top: 20px;
+}
+
+.skeleton-line {
+    height: 10px;
+    width: 100%;
+    margin: 6px 0;
+}
+
+/* Layout helpers */
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.gap8 { display: flex; gap: 8px; }
+.mb18 { margin-bottom: 18px; }
+
+/* Header */
+.skeleton-title-lg {
+  height: 18px;
+  width: 240px;
+  margin-bottom: 6px;
+}
+
+.skeleton-subtitle {
+  height: 12px;
+  width: 180px;
+}
+
+.skeleton-tab {
+  height: 30px;
+  width: 60px;
+  border-radius: 6px;
+}
+
+.skeleton-btn-sm {
+  height: 30px;
+  width: 80px;
+}
+
+/* Cards */
+.skeleton-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.skeleton-stat-num {
+  height: 24px;
+  width: 80px;
+  margin: 10px 0;
+}
+
+.skeleton-sub {
+  height: 10px;
+  width: 120px;
+}
+
+/* Charts */
+.skeleton-chart {
+  width: 100%;
+  height: 200px;
+  border-radius: 8px;
+}
+
+/* Donut */
+.skeleton-donut {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+}
+
+/* Legend */
+.skeleton-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.skeleton-line.short { width: 80px; height: 10px; }
+.skeleton-line.tiny { width: 30px; height: 10px; }
+
+/* Progress */
+.skeleton-progress {
+  width: 100%;
+  height: 10px;
+  border-radius: 6px;
+}
+
+/* Avatar */
+.skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Titles */
+.skeleton-title-md {
+  height: 16px;
+  width: 180px;
+  margin-bottom: 6px;
+}
+
+/* Badges */
+.skeleton-badge {
+  height: 20px;
+  width: 80px;
+  border-radius: 12px;
+  margin-right: 6px;
+}
+
+/* Paragraph */
+.skeleton-paragraph {
+  height: 80px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+/* Stars */
+.skeleton-stars {
+  height: 16px;
+  width: 120px;
+}
+
+/* Inputs */
+.skeleton-input {
+  height: 38px;
+  width: 100%;
+  border-radius: 6px;
+}
+
+/* Textarea */
+.skeleton-textarea {
+  height: 80px;
+  width: 100%;
+}
+
+/* Buttons */
+.skeleton-buttons-wide {
+  height: 40px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Right side */
+.skeleton-side {
+  width: 80px;
+  height: 100%;
+  border-radius: 8px;
+}
+
+/* Reuse */
+.skeleton-line.short {
+  width: 140px;
+  height: 10px;
+}
+
+/* Table header */
+.skeleton-th {
+  height: 12px;
+  width: 60px;
+}
+
+/* Table cell */
+.skeleton-td {
+  height: 12px;
+  width: 100%;
+}
+
+/* Pagination */
+.skeleton-pagination {
+  height: 30px;
+  width: 200px;
+  margin: 0 auto;
+  border-radius: 6px;
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "customer-feedback-client-side-solution",
+    "id": "4c782fac-3b44-4b81-960f-f2d4113252be",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.19.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "customer-feedback description"
+      },
+      "longDescription": {
+        "default": "customer-feedback description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "customer-feedback Feature",
+        "description": "The feature that activates elements of the customer-feedback solution.",
+        "id": "fdfae5a7-b163-4d39-89e3-cc0407029e97",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/customer-feedback.sppkg"
+  }
+}
