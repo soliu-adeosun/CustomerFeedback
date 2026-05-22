@@ -80,29 +80,29 @@ export default class Analytics extends React.Component<{}, {}> {
                                 <div className="kpi-lbl">NPS Score</div>
                                 {/* ID matches what analytics.js writes to: $("#ov-nps") */}
                                 <div className="kpi-val mono" id="ov-nps">—</div>
-                                <span className="kpi-delta delta-up" id="ov-d-nps">▲ +7 pts vs prior</span>
-                                <div className="kpi-sub">Target: +40 · Benchmark: +30–+50</div>
+                                {/* <span className="kpi-delta delta-up" id="ov-d-nps">▲ +7 pts vs prior</span>
+                                <div className="kpi-sub">Target: +40 · Benchmark: +30–+50</div> */}
                             </div>
 
                             <div className="kpi-card" style={{ ['--accent' as any]: '#0ea5e9' }}>
                                 <div className="kpi-lbl">CSAT Average</div>
                                 <div className="kpi-val mono" id="ov-csat">—</div>
-                                <span className="kpi-delta delta-up" id="ov-d-csat">▲ +0.3 vs prior</span>
-                                <div className="kpi-sub">Out of 10 · Target: 8.0+</div>
+                                {/* <span className="kpi-delta delta-up" id="ov-d-csat">▲ +0.3 vs prior</span>
+                                <div className="kpi-sub">Out of 10 · Target: 8.0+</div> */}
                             </div>
 
                             <div className="kpi-card" style={{ ['--accent' as any]: 'var(--green)' }}>
                                 <div className="kpi-lbl">Satisfaction Rate</div>
                                 <div className="kpi-val mono" id="ov-sat">—</div>
-                                <span className="kpi-delta delta-up" id="ov-d-sat">▲ +6% vs prior</span>
-                                <div className="kpi-sub">Scores 8–10 · Target: 75%</div>
+                                {/* <span className="kpi-delta delta-up" id="ov-d-sat">▲ +6% vs prior</span>
+                                <div className="kpi-sub">Scores 8–10 · Target: 75%</div> */}
                             </div>
 
                             <div className="kpi-card" style={{ ['--accent' as any]: 'var(--txt3)' }}>
                                 <div className="kpi-lbl">Total Responses</div>
                                 <div className="kpi-val mono" id="ov-resp">—</div>
-                                <span className="kpi-delta delta-up" id="ov-d-resp">▲ +12 this month</span>
-                                <div className="kpi-sub" id="ov-s-resp">Response rate: 74%</div>
+                                {/* <span className="kpi-delta delta-up" id="ov-d-resp">▲ +12 this month</span>
+                                <div className="kpi-sub" id="ov-s-resp">Response rate: 74%</div> */}
                             </div>
                         </div>
 
@@ -112,11 +112,11 @@ export default class Analytics extends React.Component<{}, {}> {
                             <div className="panel">
                                 <div className="panel-hdr">
                                     <div className="panel-title">NPS Monthly Trend</div>
-                                    <span className="ptag ptag-gold">NPS</span>
+                                    {/* <span className="ptag ptag-gold">NPS</span> */}
                                 </div>
                                 <div className="legend">
                                     <div className="leg-item"><div className="leg-sw" style={{ background: '#F5A623' }} />NPS Score</div>
-                                    <div className="leg-item"><div className="leg-sw" style={{ background: 'transparent', border: '1px dashed #7A8BA0' }} />Target (+40)</div>
+                                    <div className="leg-item"><div className="leg-sw" style={{ background: 'transparent', border: '1px dashed #7A8BA0' }} />Target (+50)</div>
                                 </div>
                                 <div className="chart-wrap" style={{ height: 190 }}><canvas id="chart-ov-nps" /></div>
                             </div>
@@ -124,7 +124,7 @@ export default class Analytics extends React.Component<{}, {}> {
                             <div className="panel">
                                 <div className="panel-hdr">
                                     <div className="panel-title">CSAT Score Distribution</div>
-                                    <span className="ptag ptag-teal">CSAT</span>
+                                    {/* <span className="ptag ptag-teal">CSAT</span> */}
                                 </div>
                                 <div className="legend">
                                     <div className="leg-item"><div className="leg-sw" style={{ background: 'rgba(193,32,46,.6)' }} />Dissatisfied (1–4)</div>
@@ -138,8 +138,8 @@ export default class Analytics extends React.Component<{}, {}> {
                         {/* ── NPS SEGMENT BREAKDOWN ── */}
                         <div className="nps-panel">
                             <div className="panel-hdr" style={{ marginBottom: 0 }}>
-                                <div className="panel-title">NPS Segment Breakdown — All Divisions</div>
-                                <div className="nps-formula">
+                                <div className="panel-title">NPS Segment Breakdown</div>
+                                <div className="nps-formula hidden">
                                     NPS = <span id="ov-fp">—</span> Promoters − <span id="ov-fd">—</span> Detractors = <span style={{ color: 'var(--green)' }} id="ov-fs">—</span>
                                 </div>
                             </div>

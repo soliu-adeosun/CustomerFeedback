@@ -14,10 +14,10 @@ export default class Report extends React.Component<{}, {}> {
                 <GlobalLoader />
                 <div className="hidden" id="real-content">
                     <div className="hist-wrap">
-                        <div className="period-bar" style={{ marginBottom: 16 }}>
+                        {/* <div className="period-bar" style={{ marginBottom: 16 }}>
                             <div className="period-title">Survey <span>History</span></div>
                             <div className="period-meta" id="hist-meta">24 records</div>
-                        </div>
+                        </div> */}
                         <div className="hist-ctrl">
                             <select className="ctrl-sel" id="hist-div">
                                 <option>All Divisions</option>
@@ -68,6 +68,8 @@ export default class Report extends React.Component<{}, {}> {
                                         <th speed-table-data="JobNumber">Job No.</th>
                                         <th speed-table-data="CSATCategory">CSAT</th>
                                         <th speed-table-data="NPSCategory">NPS</th>
+                                        <th speed-table-data="CrewName" id='crew-column'>Crew Name</th>
+                                        <th speed-table-data="MachineUsed" id='machine-column'>Machine Used</th>
                                     </tr>
                                 </thead>
                                 <tbody id="speed-data-table" />

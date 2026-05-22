@@ -11,15 +11,15 @@ const GlobalTopNav: React.FC<GlobalTopNavProps> = ({ openSidebar }) => {
 
     const routeTitles: Record<string, string> = {
         "/": "New Survey",
-        "/surveyhistory": "Survey History",
+        "/surveyhistory": "Survey Record",
         "/reviewqueue": "Review Queue",
         "/analytics": "Analytics Dashboard",
         "/approverequest": "Approve Request",
         "/viewrequest": "View Request",
-        "/customerform": "Customer Feedback",
+        "/customerform": "",
     };
 
-    const currentTitle = routeTitles[location.pathname] || "New Survey";
+    const currentTitle = routeTitles[location.pathname] || "";
 
     return (
         <div className="topbar">
@@ -36,8 +36,11 @@ const GlobalTopNav: React.FC<GlobalTopNavProps> = ({ openSidebar }) => {
             {currentTitle && (
                 <div className="tb-title" id="tb-title">
                     {currentTitle.split(" ")[0]} <span>{currentTitle.split(" ")[1] || ""}</span>
+                    
                 </div>
             )}
+
+            <div className="tb-title hidden customertopBar">We value your feedback</div>
             {/* <div className="topbar-bc">
                 <span className="bc-root">Customer Feedback</span>
                 <span className="bc-sep">›</span>

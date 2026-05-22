@@ -75,12 +75,11 @@ html, body {
   flex-shrink: 0;
 }
 .sb-emblem {
-  width: 34px; height: 34px; border-radius: 8px;
-  background: var(--gold-l);
+  background: var(--navy);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-.sb-emblem svg, .sb-emblem img { width: 20px; height: 20px; }
+.sb-emblem svg, .sb-emblem img { width: 36px; height: 30px; }
 .sb-name { font-size: 13.5px; font-weight: 700; color: #fff; letter-spacing: -.02em; line-height: 1.2; }
 .sb-sub  { font-size: 9.5px;  color: rgba(255,255,255,.35); text-transform: uppercase; letter-spacing: .09em; margin-top: 1px; }
 
@@ -220,7 +219,7 @@ html, body {
 /* Field */
 .field-group { display: flex; flex-direction: column; gap: 5px; }
 .field-label { font-size: 11px; font-weight: 700; color: var(--txt2); text-transform: uppercase; letter-spacing: .06em; }
-.field-label em { color: var(--red); font-style: normal; }
+.field-label em, .rating-q em { color: var(--red); font-style: normal; }
 .field-input, .field-select, .field-textarea {
   background: var(--bg); border: 1.5px solid var(--border2);
   border-radius: 9px; padding: 9px 13px;
@@ -331,7 +330,7 @@ html, body {
 .form-acts { display: flex; gap: 9px; }
 
 /* Rating scale */
-.rating-q  { font-size: 13.5px; font-weight: 600; color: var(--txt); margin-bottom: 12px; }
+.rating-q  { font-size: 13.5px; font-weight: 600; color: var(--txt); margin-bottom: 12px; margin-top: 20px; }
 .rating-q small { font-size: 11px; font-weight: 400; color: var(--txt3); margin-left: 6px; }
 .rating-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px; }
 .rb {
@@ -615,4 +614,43 @@ html, body {
 
 .pagination-wrap {
   margin-top: 10px;
+}
+
+.data-table th:nth-child(8),
+.data-table td:nth-child(8),
+.data-table th:nth-child(9),
+.data-table td:nth-child(9) {
+  display: none;
+}
+
+.no-data-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+  opacity: 0.85;
+  animation: float 2s ease-in-out infinite;
+}
+
+.no-data-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.no-data-sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.no-data-hint {
+  font-size: 11px;
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+/* subtle animation */
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }

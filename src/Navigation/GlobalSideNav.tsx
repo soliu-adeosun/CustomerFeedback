@@ -114,7 +114,7 @@ const GlobalSideNav: React.FC<GlobalSideNavProps> = ({ closeSidebar }) => {
                 </div>
                 <div>
                     <div className="sb-name">RusselSmith</div>
-                    <div className="sb-sub">Customer Feedback</div>
+                    <div className="sb-sub hidden">Customer Feedback</div>
                 </div>
             </div>
 
@@ -128,7 +128,7 @@ const GlobalSideNav: React.FC<GlobalSideNavProps> = ({ closeSidebar }) => {
                     </Link>
 
                     <Link to="/surveyhistory" className={navClass("/surveyhistory")} onClick={closeSidebar}>
-                        <span className="nav-icon"><IconSurveyHistory solid={isActive("/surveyhistory")} /></span>Survey History
+                        <span className="nav-icon"><IconSurveyHistory solid={isActive("/surveyhistory")} /></span>Survey Record
                     </Link>
 
                     <Link to="/analytics" className={navClass("/analytics")} onClick={closeSidebar}>

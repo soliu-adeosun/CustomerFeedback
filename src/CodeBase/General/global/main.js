@@ -112,7 +112,7 @@ function whenLayoutLoaded() {
     function () {
       // console.log("SP dependencies started");
       var dependenciesCount = 0;
-      var expectedDepenciesCount = 9;
+      var expectedDepenciesCount = 10;
       // speedctxRoot = new Speed();
       globalDefinitions = new GlobalDefinitionsManager();
 
@@ -249,6 +249,16 @@ function whenLayoutLoaded() {
           checkAppDependency();
         })
 
+        $spcontext.getItem("CrewNames", $spcontext.camlBuilder(titleQuery), function (_spMeta) {
+          var listEnumerator = _spMeta.getEnumerator();
+          MainApplication.crewNames = [];
+          while (listEnumerator.moveNext()) {
+            var title = listEnumerator.get_current().get_item("Title");
+            MainApplication.crewNames.push(title);
+          }
+          checkAppDependency();
+        })
+
         $spcontext.getItem("CustomerList", $spcontext.camlBuilder(titleQuery), function (_spMeta) {
           var listEnumerator = _spMeta.getEnumerator();
           MainApplication.customerList = [];
@@ -294,9 +304,11 @@ function whenLayoutLoaded() {
 
           if (MainApplication.configuredTaskMembers[configProperties.CUSTOMER.setting]?.belongs) {
             $("#customerView").show();
+            $(".customertopBar").removeClass("hidden");
             MainApplication.isCustomer = true;
           } else {
             $("#adminView").show();
+            $(".sb-sub").removeClass("hidden");
           }
 
           $spcontext.errorHandler = globalDefinitions.errorHandler;

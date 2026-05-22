@@ -67,6 +67,30 @@ whenReportDependeciesLoaded = function () {
     // Filters (ONLY existing controls)
     $("#hist-div, #hist-nps, #hist-csat").on("change", function () {
         MainApplication.ReportComponent.applyFilters();
+
+        if ($(this).attr("id") === "hist-div") {
+            const selected = $(this).val();
+
+            const toggleColumn = (colIndex, show) => {
+                $(".data-table tr").each(function () {
+                    $(this).find(`th:nth-child(${colIndex}), td:nth-child(${colIndex})`)
+                        .toggle(show);
+                });
+            };
+
+            if (selected === "Advanced Manufacturing") {
+                toggleColumn(9, true);  // Machine
+                toggleColumn(8, false); // Crew
+            } 
+            else if (selected === "Asset Integrity") {
+                toggleColumn(8, true);  // Crew
+                toggleColumn(9, false); // Machine
+            } 
+            else {
+                toggleColumn(8, false);
+                toggleColumn(9, false);
+            }
+        }
     });
 
     $("#hist-q").on("keyup", function () {
@@ -104,7 +128,7 @@ MainApplication.ReportComponent.retrieveRequest = function () {
     var extraProperties = {
         merge: true,
         data: [
-            "ID", "Modified", "Division", "CustomerName",
+            "ID", "Modified", "Division", "CustomerName", "MachineUsed", "CrewName",
             "JobNumber", "CSATCategory", "NPSCategory"
         ]
     };

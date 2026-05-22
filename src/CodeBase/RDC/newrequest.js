@@ -101,6 +101,10 @@ function whenNewRequestDependeciesLoaded() {
 		$("#ai-service-line").append(`<option value="${MainApplication.serviceLines[k]}">${MainApplication.serviceLines[k]}</option>`);
 	}
 
+	for (var c = 0; c < MainApplication.crewNames.length; c++){
+		$("#ai-crewname").append(`<option value="${MainApplication.crewNames[c]}">${MainApplication.crewNames[c]}</option>`);
+	}
+
 	if (MainApplication.configuredTaskMembers[configProperties.CUSTOMER.setting]?.belongs){
 		globalDefinitions.HandlerError("You are not allowed to access this page");
 		globalDefinitions.AuditLogManager_SaveLog({
