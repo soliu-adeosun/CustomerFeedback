@@ -36,47 +36,68 @@ function whenCustomerFormLoaded() {
     AppRequest.itemId = $spcontext.getParameterByName("itemid", window.location.href);
     AppRequest.customerId = $spcontext.getParameterByName("customerid", window.location.href);
 
-	MainApplication.CustomerComponent.buildRating('am-csat-row', 'csat', MainApplication.csat);
-	MainApplication.CustomerComponent.buildRating('am-nps-row', 'nps', MainApplication.nps);
+	MainApplication.buildRating('am-csat-row', 'csat', MainApplication.csat);
+	MainApplication.buildRating('am-nps-row', 'nps', MainApplication.nps);
 
 	if (AppRequest.customerId === CurrentUserProperties.email) {
 		MainApplication.CustomerComponent.recoverListData();
 	} else {
 		MainApplication.notyf.error("You are unauthorized to access this form... ");
-		$spcontext.redirect("https://russelsmithgroup.com", false);
+		$spcontext.redirect("#/", false);
 	}
 }
 
-MainApplication.CustomerComponent.buildRating = function (rowId, key, data) {
-  const el = document.getElementById(rowId);
-  if (!el || el.children.length) return;
+MainApplication.buildRating = function (
+    rowId,
+    key,
+    data,
+    selectedValue = null,
+    readOnly = false
+) {
+    const el = document.getElementById(rowId);
+    if (!el || el.children.length) return;
 
-  data.forEach(item => {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'rb';
-    b.dataset.v = item.rating;
+    data.forEach(item => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'rb';
+        b.dataset.v = item.rating;
 
-    b.innerHTML = `
-      ${item.rating}
-      <div class="emoji-tip">${item.title}</div>
-    `;
+        // preselect
+        if (item.rating == selectedValue) {
+            b.classList.add('sel');
+        }
 
-    b.onclick = () => {
-      el.querySelectorAll('.rb').forEach(x => x.classList.remove('sel'));
-      b.classList.add('sel');
-	  if (key === 'nps') {
-      	AppRequest.npsRating = item.rating;
-		AppRequest.npsCategory = item.category;
-	  } else if (key === 'csat') {
-		AppRequest.csatRating = item.rating;
-		AppRequest.csatCategory = item.category;
-	  }
-    };
+        b.innerHTML = `
+            ${item.rating}
+            <div class="emoji-tip">${item.title}</div>
+        `;
 
-    el.appendChild(b);
-  });
-}
+        // only attach click if editable
+        if (!readOnly) {
+            b.onclick = () => {
+                el.querySelectorAll('.rb').forEach(x =>
+                    x.classList.remove('sel')
+                );
+
+                b.classList.add('sel');
+
+                if (key === 'nps') {
+                    AppRequest.npsRating = item.rating;
+                    AppRequest.npsCategory = item.category;
+                } else if (key === 'csat') {
+                    AppRequest.csatRating = item.rating;
+                    AppRequest.csatCategory = item.category;
+                }
+            };
+        } else {
+            b.disabled = true; // prevents interaction
+        }
+
+        el.appendChild(b);
+    });
+};
+
 // Form submission processes
 MainApplication.CustomerComponent.confirmSubmit = function (actionTaken) {
 	$("#confirmModal").modal("show");
@@ -110,7 +131,7 @@ MainApplication.CustomerComponent.saveDataToList = function (actionTaken) {
 	var historyProp = {
 		stage: AppRequest.requestDetails.Current_Approver,
 		comment: AppRequest.comment,
-		action: actionTaken,
+		action: "Survey filled",
 	};
 
 	formData = customWorkflowEngine.routeEngine(customWorkflowEngine).requestHistoryHandler(formData, AppRequest.requestDetails.Transaction_History, historyProp);
@@ -133,7 +154,7 @@ MainApplication.CustomerComponent.proceedToList = function (formData) {
 		globalDefinitions.AuditLogManager_SaveLog({
 			Action: `customer feedback submitted for ${AppRequest.requestDetails.WorkflowRequestID}`,
 		});
-		$spcontext.redirect("https://russelsmithgroup.com", false);
+		$spcontext.redirect("https://www.russelsmithgroup.com/", false);
 
 	});
 	globalDefinitions.closeLoader();
@@ -184,7 +205,7 @@ MainApplication.CustomerComponent.recoverListData = function () {
 		$spcontext.getListToControl(globalDefinitions.stageDefinitions.listname, query, extraProperties, function (listProperties) {
 			if ($.isEmptyObject(listProperties)) {
 				MainApplication.notyf.error("Request is not pending approval...");
-				$spcontext.redirect("https://russelsmithgroup.com", false);
+				$spcontext.redirect("https://russelsmithgroup.com/", false);
 				$(".overlay-loader").hide();
 				globalDefinitions.closeLoader();
 			} else {
@@ -246,7 +267,7 @@ MainApplication.CustomerComponent.recoverListData = function () {
 								$(".overlay-loader").hide();
 								globalDefinitions.closeLoader();
 							}, 1000);
-							$spcontext.redirect("https://russelsmithgroup.com", false);
+							$spcontext.redirect("https://russelsmithgroup.com/", false);
 						}
 
 						// }
@@ -258,7 +279,7 @@ MainApplication.CustomerComponent.recoverListData = function () {
 		$(".overlay-loader").hide();
 		globalDefinitions.closeLoader();
 		MainApplication.notyf.error("Invalid Request...");
-		$spcontext.redirect("https://russelsmithgroup.com", false);
+		$spcontext.redirect("#/", false);
 	}
 };
 

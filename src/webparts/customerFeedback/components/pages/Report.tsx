@@ -11,7 +11,7 @@ export default class Report extends React.Component<{}, {}> {
 
         return (
             <>
-                <GlobalLoader />
+                <GlobalLoader message='Preparing Survey History...' />
                 <div className="hidden" id="real-content">
                     <div className="hist-wrap">
                         {/* <div className="period-bar" style={{ marginBottom: 16 }}>
@@ -37,7 +37,7 @@ export default class Report extends React.Component<{}, {}> {
                                 <option value="Satisfied">Satisfied (8–10)</option>
                             </select>
                             <input className="hist-search" id="hist-q" placeholder="🔍  Search by customer, job, or project…" />
-                            <button className="btn btn-gold" id="hist-export">Export</button>
+                            <button className="btn btn-navy" id="hist-export">Export</button>
                         </div>
                         <div className="panel">
                             <div className="panel-hdr"><div className="panel-title">Survey Records</div><span className="ptag ptag-teal" id="hist-count">24 records</span></div>
@@ -70,6 +70,7 @@ export default class Report extends React.Component<{}, {}> {
                                         <th speed-table-data="NPSCategory">NPS</th>
                                         <th speed-table-data="CrewName" id='crew-column'>Crew Name</th>
                                         <th speed-table-data="MachineUsed" id='machine-column'>Machine Used</th>
+                                        <th speed-table-data="WorkflowRequestID">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="speed-data-table" />

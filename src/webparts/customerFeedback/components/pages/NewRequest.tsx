@@ -10,7 +10,7 @@ export default class NewRequest extends React.Component<{}, {}> {
 	public render(): React.ReactElement {
 		return (
 			<>
-				<GlobalLoader />
+				<GlobalLoader message="Preparing survey content..." />
 				<div className="hidden" id="real-content">
 					<div className="wrap">
 						{/* Hero */}
@@ -64,7 +64,7 @@ export default class NewRequest extends React.Component<{}, {}> {
 									</div>
 									<div className="field-group"><label className="field-label">Part Name <em>*</em></label><input className="field-input" id="am-part" placeholder="e.g. API Flanged Spool" speed-bind-validate="PartName" speed-bind-class="AdvancedManufacturing" /></div>
 									<div className="field-group"><label className="field-label">Job Number <em>*</em></label><input className="field-input" id="am-job" placeholder="e.g. RS-AM-2025-0042" speed-bind-validate="JobNumber" speed-bind-class="AdvancedManufacturing" /></div>
-									<div className="field-group"><label className="field-label">Machine Used</label>
+									<div className="field-group"><label className="field-label">Machine Used <em>*</em></label>
 										<select className="field-select" id="am-machine" speed-bind-validate="MachineUsed" speed-bind-class="AdvancedManufacturing">
 											<option>Select a machine</option>
 										</select>
@@ -111,7 +111,7 @@ export default class NewRequest extends React.Component<{}, {}> {
 										</select>
 									</div>
 									{/* <div className="field-group"><label className="field-label">Crew Name <em>*</em></label><input className="field-input" id="ai-crew" placeholder="e.g. Crew Alpha / Team Lead" speed-bind-validate="CrewName" speed-bind-class="AssetIntegrity"/></div> */}
-									<div className="field-group"><label className="field-label">Crew Name</label>
+									<div className="field-group"><label className="field-label">Crew Name <em>*</em></label>
 										<select className="field-select" id="ai-crewname" speed-bind-validate="CrewName" speed-bind-class="AssetIntegrity">
 											<option>Select a Crew</option>
 										</select>
@@ -120,7 +120,7 @@ export default class NewRequest extends React.Component<{}, {}> {
 									<div className="field-group"><label className="field-label">Project Title <em>*</em></label>
 										<input className="field-input" placeholder="Enter Project Title" speed-bind-validate="ProjectTitle" speed-bind-class="AssetIntegrity" />
 									</div>
-									<div className="field-group"><label className="field-label">Service Line</label>
+									<div className="field-group"><label className="field-label">Service Line <em>*</em></label>
 										<select className="field-select" id="ai-service-line" speed-bind-validate="ServiceLine" speed-bind-class="AssetIntegrity">
 											<option>Select a service line</option>
 										</select>

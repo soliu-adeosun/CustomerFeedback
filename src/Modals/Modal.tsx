@@ -108,7 +108,7 @@ export default class Modal extends React.Component<{}, {}> {
                             </div>
                             <div className="modal-footer">
 
-                                <ClientButton func="confirmAction" clax="btn btn-primary" prop="" attr="">
+                                <ClientButton func="confirmAction" clax="btn btn-navy" prop="" attr="">
                                     Yes
                                 </ClientButton>
                                 <button

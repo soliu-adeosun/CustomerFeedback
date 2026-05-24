@@ -12,7 +12,7 @@ export default class CustomerForm extends React.Component<{}, {}> {
 	public render(): React.ReactElement {
 		return (
 			<>
-				<GlobalLoader />
+				<GlobalLoader message="Preparing Survey..." />
 				<div className="hidden" id="real-content">
 					<div className="wrap">
 						{/* Hero */}
@@ -42,16 +42,16 @@ export default class CustomerForm extends React.Component<{}, {}> {
 								<div className="sec-lbl"><div className="sec-lbl-txt">Job Details</div><div className="sec-lbl-line" /></div>
 
 								<div className="form-grid hidden" id="am-job-details">
-									<div className="field-group"><label className="field-label">Part Name <em>*</em></label><input className="field-input" id="am-part" placeholder="e.g. API Flanged Spool" speed-bind="PartName" /></div>
-									<div className="field-group"><label className="field-label">Job Number <em>*</em></label><input className="field-input" id="am-job" placeholder="e.g. RS-AM-2025-0042" speed-bind="JobNumber" /></div>
-									{/* <div className="field-group"><label className="field-label">Machine Used <em>*</em></label><input className="field-input" id="am-machine" placeholder="e.g. CNC Mill" speed-bind="MachineUsed" /></div> */}
+									<div className="field-group"><label className="field-label">Part Name <em>*</em></label><input readOnly className="field-input" id="am-part" placeholder="e.g. API Flanged Spool" speed-bind="PartName" /></div>
+									<div className="field-group"><label className="field-label">Job Number <em>*</em></label><input readOnly className="field-input" id="am-job" placeholder="e.g. RS-AM-2025-0042" speed-bind="JobNumber" /></div>
+									{/* <div className="field-group"><label className="field-label">Machine Used <em>*</em></label><input readOnly className="field-input" id="am-machine" placeholder="e.g. CNC Mill" speed-bind="MachineUsed" /></div> */}
 								</div>
 
 								<div className="form-grid hidden" id="ai-job-details">
-									<div className="field-group"><label className="field-label">Crew Name <em>*</em></label><input className="field-input" id="ai-crew" placeholder="e.g. Crew Alpha / Team Lead" speed-bind="CrewName" /></div>
-									<div className="field-group"><label className="field-label">Job Number <em>*</em></label><input className="field-input" id="ai-job" placeholder="e.g. RS-AI-2025-0089" speed-bind="JobNumber" /></div>
-									<div className="field-group"><label className="field-label">Project Title <em>*</em></label><input className="field-input" id="ai-project" placeholder="e.g. Asset Integrity Project" speed-bind="ProjectTitle" /></div>
-									<div className="field-group"><label className="field-label">Service Line <em>*</em></label><input className="field-input" id="ai-service" placeholder="e.g. Asset Integrity" speed-bind="ServiceLine" /></div>
+									<div className="field-group"><label className="field-label">Crew Name <em>*</em></label><input readOnly className="field-input" id="ai-crew" placeholder="e.g. Crew Alpha / Team Lead" speed-bind="CrewName" /></div>
+									<div className="field-group"><label className="field-label">Job Number <em>*</em></label><input readOnly className="field-input" id="ai-job" placeholder="e.g. RS-AI-2025-0089" speed-bind="JobNumber" /></div>
+									<div className="field-group"><label className="field-label">Project Title <em>*</em></label><input readOnly className="field-input" id="ai-project" placeholder="e.g. Asset Integrity Project" speed-bind="ProjectTitle" /></div>
+									<div className="field-group"><label className="field-label">Service Line <em>*</em></label><input readOnly className="field-input" id="ai-service" placeholder="e.g. Asset Integrity" speed-bind="ServiceLine" /></div>
 								</div>
 
 								{/* <div className="sec-lbl"><div className="sec-lbl-txt">CSAT — Product Satisfaction</div><div className="sec-lbl-line" /></div> */}

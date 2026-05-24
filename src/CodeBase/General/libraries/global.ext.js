@@ -54,23 +54,23 @@ GlobalDefinitionsManager.prototype.SetWorkflowRouting = function (customWorkflow
                 flow: globalDefinitions.stageDefinitions.normalflow,
                 users: []
             }]
-        }
-        // {
-        //     code: "AA2",
-        //     initiationCode: "AA1",            
-        //     possibleRoutes: [{
-        //         name: globalDefinitions.stageDefinitions.management,
-        //         username: "",
-        //         condition: true,
-        //         authenticationType: customWorkflowEngine.stages.group,
-        //         authenticationValue: null,
-        //         actionType: "Actor",
-        //         emails: [],
-        //         doa: false,
-        //         flow: globalDefinitions.stageDefinitions.normalflow,
-        //         users: []
-        //     }]
-        // },
+        },
+        {
+            code: "AA20",
+            initiationCode: "AA19",            
+            possibleRoutes: [{
+                name: globalDefinitions.stageDefinitions.admin,
+                username: "",
+                condition: true,
+                authenticationType: customWorkflowEngine.stages.group,
+                authenticationValue: null,
+                actionType: "Actor",
+                emails: [],
+                doa: false,
+                flow: globalDefinitions.stageDefinitions.normalflow,
+                users: []
+            }]
+        },
         // {
         //     code: "AA3",
         //     initiationCode: "AA2",            

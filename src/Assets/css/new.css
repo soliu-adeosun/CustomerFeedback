@@ -246,6 +246,8 @@ html, body {
 .btn-ghost  { background: none; border: 1.5px solid var(--border2); color: var(--txt2); }
 .btn-ghost:hover { border-color: var(--txt2); color: var(--txt); }
 .btn-danger { background: var(--red); color: #fff; }
+.btn-navy { background: var(--navy); color: #fff; }
+.btn-navy:hover { background: var(--txt2); }
 
 /* Pills */
 .pill {
@@ -327,7 +329,7 @@ html, body {
   display: flex; align-items: center; justify-content: space-between; gap: 10px;
 }
 .req-note { font-size: 11px; color: var(--txt4); }
-.form-acts { display: flex; gap: 9px; }
+.form-acts { display: flex; gap: 9px; justify-content: flex-end; }
 
 /* Rating scale */
 .rating-q  { font-size: 13.5px; font-weight: 600; color: var(--txt); margin-bottom: 12px; margin-top: 20px; }
@@ -571,7 +573,7 @@ html, body {
   .dash-ctrl { display: none; }
   .form-ref { display: none; }
   .form-foot { flex-direction: column; align-items: stretch; }
-  .form-acts { justify-content: flex-end; }
+  .form-acts { justify-content: center; }
   .wrap { padding: 14px; }
   .hist-wrap { padding: 14px; }
   .tb-btn:not(.tb-primary) { display: none; }
@@ -603,13 +605,6 @@ html, body {
     100% {
         background-position: -200% 0;
     }
-}
-
-.loader-content {
-    height: calc(100vh - 58px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .pagination-wrap {
@@ -653,4 +648,132 @@ html, body {
 @keyframes float {
   0%,100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
+}
+
+.view-icon svg {
+  width: 14px;
+  height: 14px;
+  color: black;
+}
+
+/* Globbal Loader styling */
+
+.loader-content {
+    height: calc(100vh - 58px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:
+        radial-gradient(circle at top right, rgba(255, 68, 0, 0.06), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(0, 119, 255, 0.05), transparent 35%),
+        #f7f8fa;
+    overflow: hidden;
+    position: relative;
+}
+
+.loader-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 40px 48px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.78);
+    backdrop-filter: blur(18px);
+    box-shadow:
+        0 18px 40px rgba(0,0,0,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.7);
+    animation: floatLoader 3s ease-in-out infinite;
+}
+
+.loader-ring {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 68, 0, 0.14);
+    border-top-color: #ff4400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: spinLoader 1.2s linear infinite;
+}
+
+.loader-core {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff4400, #ff8a50);
+    animation: pulseCore 1.5s ease-in-out infinite;
+    box-shadow:
+        0 0 18px rgba(255,68,0,0.35),
+        0 0 35px rgba(255,68,0,0.15);
+}
+
+.loader-text {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: #0d1b2a;
+    animation: fadeText 1.8s ease-in-out infinite;
+}
+
+.loader-text::after {
+    content: "...";
+    animation: dots 1.5s steps(4, end) infinite;
+}
+
+.loader-sub {
+    font-size: 14px;
+    color: #6b7280;
+    letter-spacing: 0.5px;
+}
+
+@keyframes spinLoader {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulseCore {
+    0%,100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.18);
+        opacity: 0.8;
+    }
+}
+
+@keyframes floatLoader {
+    0%,100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes fadeText {
+    0%,100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.65;
+    }
+}
+
+@keyframes dots {
+    0% { content: ""; }
+    25% { content: "."; }
+    50% { content: ".."; }
+    75% { content: "..."; }
+}
+
+#confirmModal .modal-footer {
+  justify-content: center !important;
+}
+
+#confirmModal .modal-body {
+  text-align: center !important;
 }

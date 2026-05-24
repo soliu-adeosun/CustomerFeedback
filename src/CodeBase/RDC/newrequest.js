@@ -189,11 +189,11 @@ MainApplication.NewRequestComponent.saveDataToList = function () {
 		AppRequest.returned = AppRequest.requestDetails.ReturnForCorrection;
 
 		if (AppRequest.returned === "Yes") {
-			formData = customWorkflowEngine.routeEngine(customWorkflowEngine).requestHistoryHandler(formData, AppRequest.requestDetails.Transaction_History, { stage: "Initiator", action: "Idea Re-Submitted" });
+			formData = customWorkflowEngine.routeEngine(customWorkflowEngine).requestHistoryHandler(formData, AppRequest.requestDetails.Transaction_History, { stage: "Initiator", action: "Survey Re-Submitted" });
 			formData = customWorkflowEngine.routeEngine(customWorkflowEngine).runRouting(formData);
 		}
 		else {
-			formData = customWorkflowEngine.routeEngine(customWorkflowEngine).requestHistoryHandler(formData, AppRequest.transactionHistory, { stage: "Initiator", action: "Idea Submitted" });
+			formData = customWorkflowEngine.routeEngine(customWorkflowEngine).requestHistoryHandler(formData, AppRequest.transactionHistory, { stage: "Initiator", action: "Survey Created" });
 			formData = customWorkflowEngine.routeEngine(customWorkflowEngine).runRouting(formData);
 		}
 		globalDefinitions.onActionCompleted();

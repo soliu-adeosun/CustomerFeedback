@@ -15,7 +15,7 @@ const GlobalTopNav: React.FC<GlobalTopNavProps> = ({ openSidebar }) => {
         "/reviewqueue": "Review Queue",
         "/analytics": "Analytics Dashboard",
         "/approverequest": "Approve Request",
-        "/viewrequest": "View Request",
+        "/viewrequest": "View Survey",
         "/customerform": "",
     };
 

@@ -39,7 +39,7 @@ export default class Analytics extends React.Component<{}, {}> {
     public render(): React.ReactElement {
         return (
             <>
-                <GlobalLoader />
+                <GlobalLoader message="Preparing Analytics Dashboard..." />
                 <div id="real-content" className="hidden">
                     <div className="wrap">
 
