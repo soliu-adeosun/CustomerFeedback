@@ -15,18 +15,18 @@ export default class ViewRequest extends React.Component<{}, {}> {
 							<div className="sec-lbl"><div className="sec-lbl-txt">Job Details</div><div className="sec-lbl-line" /></div>
 
 							<div className="form-grid hidden" id="am-job-details">
-								<div className="field-group"><label className="field-label">Ref ID </label><input readOnly className="field-input" speed-bind="WorkflowRequestID" /></div>
-								<div className="field-group"><label className="field-label">Part Name </label><input readOnly className="field-input" id="am-part" placeholder="e.g. API Flanged Spool" speed-bind="PartName" /></div>
-								<div className="field-group"><label className="field-label">Job Number </label><input readOnly className="field-input" id="am-job" placeholder="e.g. RS-AM-2025-0042" speed-bind="JobNumber" /></div>
+								<div className="field-group"><label className="field-label">Ref ID </label><input readOnly className="field-input" speed-bind="documentNo" /></div>
+								<div className="field-group"><label className="field-label">Part Name </label><input readOnly className="field-input" id="am-part" placeholder="e.g. API Flanged Spool" speed-bind="partName" /></div>
+								<div className="field-group"><label className="field-label">Job Number </label><input readOnly className="field-input" id="am-job" placeholder="e.g. RS-AM-2025-0042" speed-bind="jobNumber" /></div>
 								{/* <div className="field-group"><label className="field-label">Machine Used </label><input readOnly className="field-input" id="am-machine" placeholder="e.g. CNC Mill" speed-bind="MachineUsed" /></div> */}
 							</div>
 
 							<div className="form-grid hidden" id="ai-job-details">
-								<div className="field-group"><label className="field-label">Ref ID </label><input readOnly className="field-input" speed-bind="WorkflowRequestID" /></div>
-								<div className="field-group"><label className="field-label">Crew Name </label><input readOnly className="field-input" id="ai-crew" placeholder="e.g. Crew Alpha / Team Lead" speed-bind="CrewName" /></div>
-								<div className="field-group"><label className="field-label">Job Number </label><input readOnly className="field-input" id="ai-job" placeholder="e.g. RS-AI-2025-0089" speed-bind="JobNumber" /></div>
-								<div className="field-group"><label className="field-label">Project Title </label><input readOnly className="field-input" id="ai-project" placeholder="e.g. Asset Integrity Project" speed-bind="ProjectTitle" /></div>
-								<div className="field-group"><label className="field-label">Service Line </label><input readOnly className="field-input" id="ai-service" placeholder="e.g. Asset Integrity" speed-bind="ServiceLine" /></div>
+								<div className="field-group"><label className="field-label">Ref ID </label><input readOnly className="field-input" speed-bind="documentNo" /></div>
+								<div className="field-group"><label className="field-label">Crew Name </label><input readOnly className="field-input" id="ai-crew" placeholder="e.g. Crew Alpha / Team Lead" speed-bind="crewName" /></div>
+								<div className="field-group"><label className="field-label">Job Number </label><input readOnly className="field-input" id="ai-job" placeholder="e.g. RS-AI-2025-0089" speed-bind="jobNumber" /></div>
+								<div className="field-group"><label className="field-label">Project Title </label><input readOnly className="field-input" id="ai-project" placeholder="e.g. Asset Integrity Project" speed-bind="projectTitle" /></div>
+								<div className="field-group"><label className="field-label">Service Line </label><input readOnly className="field-input" id="ai-service" placeholder="e.g. Asset Integrity" speed-bind="serviceLine" /></div>
 							</div>
 
 							{/* <div className="sec-lbl"><div className="sec-lbl-txt">CSAT — Product Satisfaction</div><div className="sec-lbl-line" /></div> */}
@@ -35,7 +35,7 @@ export default class ViewRequest extends React.Component<{}, {}> {
 							{/* <div className="rating-legend"><span>1 — Very Dissatisfied</span><span>10 — Extremely Satisfied!</span></div> */}
 							<div className="field-group" style={{ marginTop: 20 }}>
 								<label className="field-label">What can we do differently to improve our products?</label>
-								<textarea readOnly className="field-textarea" id="am-csat-comment" speed-bind="Comment" placeholder="Feedback on product quality, service delivery, specifications…" defaultValue={""} />
+								<textarea readOnly className="field-textarea" id="am-csat-comment" speed-bind="improvement" placeholder="Feedback on product quality, service delivery, specifications…" defaultValue={""} />
 							</div>
 							{/* <div className="sec-lbl" style={{ marginTop: 20 }}><div className="sec-lbl-txt">NPS — Likelihood to Recommend</div><div className="sec-lbl-line" /></div> */}
 							<div className="rating-q">2. How likely are you to recommend RusselSmith?  <small>1 — lowest, 10 — highest </small></div>
@@ -50,7 +50,7 @@ export default class ViewRequest extends React.Component<{}, {}> {
 						</div>
 					</div>
 					<div className="wrap">
-						<div className="form-body card">
+						<div className="form-body card hidden">
 							<div className="card-header">
 								<span className="card-title">🔍 Audit Trail</span>
 							</div>

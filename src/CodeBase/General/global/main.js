@@ -12,7 +12,7 @@ var configProperties = {
 
 var speedctxRoot;
 var globalDefinitions;
-var rsBAContext;
+var rsIntranetContext;
 var popContext;
 var $spcontext;
 // var testContext;
@@ -112,7 +112,7 @@ function whenLayoutLoaded() {
     function () {
       // console.log("SP dependencies started");
       var dependenciesCount = 0;
-      var expectedDepenciesCount = 10;
+      var expectedDepenciesCount = 11;
       // speedctxRoot = new Speed();
       globalDefinitions = new GlobalDefinitionsManager();
 
@@ -174,6 +174,8 @@ function whenLayoutLoaded() {
             configProperties[configObj.title] = configObj;
           }
         }
+
+        rsIntranetContext = new Speed(configProperties.POPCONTEXT.setting);
 
         $spcontext.errorHandler = globalDefinitions.errorHandler;
 
@@ -271,6 +273,43 @@ function whenLayoutLoaded() {
           }
           checkAppDependency();
         })
+
+        var divisionQuery = [
+          {
+            ascending: "TRUE", //ascending or descending
+            orderby: "Title", //Column Name to order by
+          },
+        ];
+
+        rsIntranetContext.getItem(
+          "RSDivisions",
+          $spcontext.camlBuilder(divisionQuery),
+          function (_spMeta) {
+
+              var listEnumerator = _spMeta.getEnumerator();
+
+              MainApplication.newDivisions = [];
+              MainApplication.newDivisionDetails = {};
+
+              while (listEnumerator.moveNext()) {
+
+                  var currentItem = listEnumerator.get_current();
+
+                  var title = currentItem.get_item("Title");
+                  var divisionEmail = $spcontext.checkNull(
+                      currentItem.get_item("DivisionEmail")
+                  );
+
+                  MainApplication.newDivisions.push(title);
+
+                  MainApplication.newDivisionDetails[title] = {
+                      title: title,
+                      divisionEmail: divisionEmail
+                  };
+              }
+
+              checkAppDependency();
+        });
 
       });
 
@@ -562,7 +601,7 @@ MainApplication.pendingRequests = function () {
       "ID", "Title", "WorkflowRequestID", "Current_Approver", "Current_Approver_Code", "Approval_Status",
       "Created", "InitiatorEmailAddress", "InitiatorLogin", "Transaction_History", "ReturnForCorrection",
       "Modified", "PendingUserEmail", "PendingUserLogin", "Attachment_Folder", "AttachmentURL", "Author",
-      "Title", "HOD", "EmployeeEmail", "Year", "Month"
+       "HOD", "EmployeeEmail", "Year", "Month"
     ]
   };
   $spcontext.getListToItems(configProperties.VBLIST.setting, query, extraProperties, true, null, function (data) {

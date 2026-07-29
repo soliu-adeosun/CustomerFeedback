@@ -67,7 +67,7 @@ MainApplication.DashboardComponent.myRequests = function () {
         type: 'Text',
         val: CurrentUserProperties.email
     }];
-    var query = vbContext.camlBuilder(queryToUse);
+    var query = $spcontext.camlBuilder(queryToUse);
     var extraProperties = {
         merge: true,
         data: [
@@ -77,7 +77,7 @@ MainApplication.DashboardComponent.myRequests = function () {
             "Division", "Ideas", "Benefits", "ImprovementArea", "Points", "EmployeeName"
         ]
     };
-    vbContext.getListToItems(configProperties.VBLIST.setting, query, extraProperties, true, null, function (tableData) {
+    $spcontext.getListToItems(configProperties.VBLIST.setting, query, extraProperties, true, null, function (tableData) {
         var completedItems = tableData.filter(function (item) {
             return item.Approval_Status === "Completed";
         });

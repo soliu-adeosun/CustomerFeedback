@@ -10,8 +10,7 @@ const GlobalTopNav: React.FC<GlobalTopNavProps> = ({ openSidebar }) => {
     const location = useLocation();
 
     const routeTitles: Record<string, string> = {
-        "/": "New Survey",
-        "/surveyhistory": "Survey Record",
+        "/": "Survey Record",
         "/reviewqueue": "Review Queue",
         "/analytics": "Analytics Dashboard",
         "/approverequest": "Approve Request",

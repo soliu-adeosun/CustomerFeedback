@@ -6,35 +6,6 @@ loadReportComponent = function () {
     }
 };
 
-var AppRequest;
-
-MainApplication.NewRequestComponent.ApplicationDetails = function () {
-	this.url = window.location.href;
-	this.itemId = null;
-	this.mode = null;
-	this.requestDetails = {};
-	this.Attachments = [];
-	this.FileUrls = {};
-	this.FolderUrl = "";
-	this.AttachmentLoader = {};
-	this.messageTemplate = {};
-	this.feedback = false;
-	this.approverComments = "";
-	this.transactionHistory = [];
-	this.defaultStage = "AA0";
-	this.returned = null;
-	this.sectionArr = [];
-	this.sections = {};
-	this.finalrating = [];
-	this.questionSetCounter = 0;
-	this.groupProperties = {};
-	this.hodName = "";
-	this.hodEmail = "";
-	this.selectedDivision = null;
-	this.contactName = "";
-	this.contactEmail = "";
-};
-
 whenReportDependeciesLoaded = function () {
     globalDefinitions.extendStages();
     globalDefinitions.sortResponse();
@@ -58,7 +29,7 @@ whenReportDependeciesLoaded = function () {
                 format: "dd/mm/yy"
             });
         },
-        "Title": function (valueToEva) {
+        "Division": function (valueToEva) {
             let division = valueToEva.Division || "";
 
             if (division === "Advanced Manufacturing") {
@@ -67,7 +38,7 @@ whenReportDependeciesLoaded = function () {
                 return '<span class="pill pill-teal">AI</span>';
             }
         },
-        "createdAt": function (valueToEva) {
+        "NPSCategory": function (valueToEva) {
             let nps = valueToEva.NPSCategory || "";
             if (nps === "Promoter") {
                 return '<span class="pill pill-green">Promoter</span>';
@@ -79,7 +50,7 @@ whenReportDependeciesLoaded = function () {
                 return nps;
             }
         },
-        "partName": function (valueToEva) {
+        "CSATCategory": function (valueToEva) {
             let csat = valueToEva.CSATCategory || "";
             if (csat === "Satisfied") {
                 return '<span class="pill pill-green">Satisfied</span>';
@@ -91,9 +62,9 @@ whenReportDependeciesLoaded = function () {
                 return csat;
             }
         },
-        "status": function (valueToEva) {
+        "WorkflowRequestID": function (valueToEva) {
             var viewStr = `
-                <a title="View" href="#/viewrequest?itemId=${valueToEva.ID}" 
+                <a title="View" href="#/viewrequest?itemId=${valueToEva.WorkflowRequestID}" 
                     class="view-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
@@ -102,12 +73,6 @@ whenReportDependeciesLoaded = function () {
                 </a>`;
 
                 return `<div class="">${viewStr}</div>`;
-        },
-        "customerName": function (valueToEva) {
-            return valueToEva.CustomerName || "";
-        },
-        "jobNumber": function (valueToEva) {
-            return valueToEva.JobNumber || "";
         }
     };
 
@@ -162,37 +127,6 @@ whenReportDependeciesLoaded = function () {
     }
 };
 
-// ─── Schema Adapter (CustomerAPIList → legacy field names) ──
-// The list was migrated to "CustomerAPIList" with renamed/retyped columns.
-// NPSCategory/CSATCategory no longer exist as list fields — they're derived
-// here from the raw "recommend"/"satisfaction" numbers via the rating→category
-// lookup tables (MainApplication.nps / MainApplication.csat).
-MainApplication.ReportComponent.mapListItem = function (item) {
-    return {
-        ID: item.ID,
-        Modified: item.Modified,
-        Division: item.Title,
-        CustomerName: item.customerName,
-        MachineUsed: item.machineUsed,
-        CrewName: item.crewName,
-        JobNumber: item.jobNumber,
-        CSAT: item.satisfaction,
-        NPS: item.recommend,
-        CSATCategory: MainApplication.ReportComponent.getCSATCategory(item.satisfaction),
-        NPSCategory: MainApplication.ReportComponent.getNPSCategory(item.recommend)
-    };
-};
-
-MainApplication.ReportComponent.getCSATCategory = function (value) {
-    var idx = Math.round(parseFloat(value)) - 1;
-    return (MainApplication.csat && MainApplication.csat[idx]) ? MainApplication.csat[idx].category : "";
-};
-
-MainApplication.ReportComponent.getNPSCategory = function (value) {
-    var idx = Math.round(parseFloat(value)) - 1;
-    return (MainApplication.nps && MainApplication.nps[idx]) ? MainApplication.nps[idx].category : "";
-};
-
 // ─── Fetch data ─────────────────────────────────────────
 
 MainApplication.ReportComponent.retrieveRequest = function () {
@@ -206,8 +140,8 @@ MainApplication.ReportComponent.retrieveRequest = function () {
     var extraProperties = {
         merge: true,
         data: [
-            "ID", "Modified", "Title", "customerName", "machineUsed", "crewName",
-            "jobNumber", "satisfaction", "recommend"
+            "ID", "Modified", "Division", "CustomerName", "MachineUsed", "CrewName",
+            "JobNumber", "CSATCategory", "NPSCategory"
         ]
     };
 
@@ -218,7 +152,7 @@ MainApplication.ReportComponent.retrieveRequest = function () {
         true,
         null,
         function (tableData) {
-            AppRequest.fullTableData = (tableData || []).map(MainApplication.ReportComponent.mapListItem);
+            AppRequest.fullTableData = tableData;
             MainApplication.ReportComponent.applyFilters();
         }
     );

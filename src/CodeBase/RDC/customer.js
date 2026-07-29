@@ -154,7 +154,7 @@ MainApplication.CustomerComponent.proceedToList = function (formData) {
 		globalDefinitions.AuditLogManager_SaveLog({
 			Action: `customer feedback submitted for ${AppRequest.requestDetails.WorkflowRequestID}`,
 		});
-		$spcontext.redirect("https://www.russelsmithgroup.com/", false);
+		$spcontext.redirect("https://www.arridex.com/", false);
 
 	});
 	globalDefinitions.closeLoader();
@@ -205,7 +205,7 @@ MainApplication.CustomerComponent.recoverListData = function () {
 		$spcontext.getListToControl(globalDefinitions.stageDefinitions.listname, query, extraProperties, function (listProperties) {
 			if ($.isEmptyObject(listProperties)) {
 				MainApplication.notyf.error("Request is not pending approval...");
-				$spcontext.redirect("https://russelsmithgroup.com/", false);
+				$spcontext.redirect("https://arridex.com/", false);
 				$(".overlay-loader").hide();
 				globalDefinitions.closeLoader();
 			} else {
@@ -267,7 +267,7 @@ MainApplication.CustomerComponent.recoverListData = function () {
 								$(".overlay-loader").hide();
 								globalDefinitions.closeLoader();
 							}, 1000);
-							$spcontext.redirect("https://russelsmithgroup.com/", false);
+							$spcontext.redirect("https://arridex.com/", false);
 						}
 
 						// }

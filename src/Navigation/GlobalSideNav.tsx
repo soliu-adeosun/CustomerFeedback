@@ -8,17 +8,17 @@ interface GlobalSideNavProps {
 // ── SVG icon components extracted from voicebox_nav_icons.svg ──────────────
 // Each icon accepts a `solid` prop — pass true when the nav item is active.
 
-const IconNewIdea: React.FC<{ solid?: boolean }> = ({ solid }) => solid ? (
-    <svg className="ico-solid" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M7 4a2 2 0 012-2h6a2 2 0 012 2v1h1a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h1V4zm2 0v1h6V4H9zm-2 5a1 1 0 000 2h10a1 1 0 000-2H7zm0 4a1 1 0 000 2h6a1 1 0 000-2H7z" />
-          </svg>
-) : (
-    <svg className="ico-outline" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
-            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
-            <rect x={9} y={3} width={6} height={4} rx={1} />
-            <path d="M9 12h6M9 16h4" />
-          </svg>
-);
+// const IconNewIdea: React.FC<{ solid?: boolean }> = ({ solid }) => solid ? (
+//     <svg className="ico-solid" viewBox="0 0 24 24" fill="currentColor">
+//             <path d="M7 4a2 2 0 012-2h6a2 2 0 012 2v1h1a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h1V4zm2 0v1h6V4H9zm-2 5a1 1 0 000 2h10a1 1 0 000-2H7zm0 4a1 1 0 000 2h6a1 1 0 000-2H7z" />
+//           </svg>
+// ) : (
+//     <svg className="ico-outline" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+//             <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+//             <rect x={9} y={3} width={6} height={4} rx={1} />
+//             <path d="M9 12h6M9 16h4" />
+//           </svg>
+// );
 
 const IconSurveyHistory: React.FC<{ solid?: boolean }> = ({ solid }) => solid ? (
     
@@ -110,10 +110,10 @@ const GlobalSideNav: React.FC<GlobalSideNavProps> = ({ closeSidebar }) => {
 
             <div className="sb-brand">
                 <div className="sb-emblem">
-                    <img src={require("../Assets/img/rslogo_mono.png")} alt="RS Logo" className="logo-icon" />
+                    <img src={require("../Assets/img/rslogo_mono.png")} alt="Arridex Logo" className="logo-icon" />
                 </div>
                 <div>
-                    <div className="sb-name">RusselSmith</div>
+                    {/* <div className="sb-name">Arridex</div> */}
                     <div className="sb-sub hidden">Customer Feedback</div>
                 </div>
             </div>
@@ -123,12 +123,12 @@ const GlobalSideNav: React.FC<GlobalSideNavProps> = ({ closeSidebar }) => {
                 
                 <div className="hidden" id="adminView">
 
-                    <Link to="/" className={navClass("/")} onClick={closeSidebar}>
+                    {/* <Link to="/" className={navClass("/")} onClick={closeSidebar}>
                         <span className="nav-icon"><IconNewIdea solid={isActive("/")} /></span>New Survey
-                    </Link>
+                    </Link> */}
 
-                    <Link to="/surveyhistory" className={navClass("/surveyhistory")} onClick={closeSidebar}>
-                        <span className="nav-icon"><IconSurveyHistory solid={isActive("/surveyhistory")} /></span>Survey Record
+                    <Link to="/" className={navClass("/")} onClick={closeSidebar}>
+                        <span className="nav-icon"><IconSurveyHistory solid={isActive("/")} /></span>Survey Record
                     </Link>
 
                     <Link to="/analytics" className={navClass("/analytics")} onClick={closeSidebar}>

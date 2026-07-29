@@ -4,7 +4,6 @@ import type { ICustomerFeedbackProps } from './ICustomerFeedbackProps';
 import {Route, Routes, HashRouter} from "react-router-dom";
 import {Layout} from "../../../Global/Layout";
 import Dashboard from "./pages/MySubmission";
-import NewRequest from "./pages/NewRequest";
 import ApproveRequest from "./pages/ApproveRequest";
 import ViewRequest from "./pages/ViewRequest";
 import Report from './pages/Report';
@@ -40,11 +39,10 @@ export default class VoiceBox extends React.Component<ICustomerFeedbackProps, {}
                 <HashRouter>
                     <Routes>
                         <Route path="/" element={<Layout />}>
-                            <Route index element={<NewRequest />} />
+                            <Route index element={<Report />} />
                             <Route path="mysubmissions" element={<Dashboard />} />
                             <Route path="approverequest" element={<ApproveRequest />} />
                             <Route path="viewrequest" element={<ViewRequest />} />
-                            <Route path="surveyhistory" element={<Report />} />
                             <Route path="analytics" element={<Analytics />} />
                             <Route path="reviewqueue" element={<ReviewQueue />} />
                             <Route path="customerform" element={<CustomerForm />} />

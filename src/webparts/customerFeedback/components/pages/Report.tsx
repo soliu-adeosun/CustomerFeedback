@@ -63,14 +63,14 @@ export default class Report extends React.Component<{}, {}> {
                                     <tr>
                                         <th>S/N</th>
                                         <th speed-table-data="Modified">Date</th>
-                                        <th speed-table-data="Division">Division</th>
-                                        <th speed-table-data="CustomerName">Customer</th>
-                                        <th speed-table-data="JobNumber">Job No.</th>
-                                        <th speed-table-data="CSATCategory">CSAT</th>
-                                        <th speed-table-data="NPSCategory">NPS</th>
-                                        <th speed-table-data="CrewName" id='crew-column'>Crew Name</th>
-                                        <th speed-table-data="MachineUsed" id='machine-column'>Machine Used</th>
-                                        <th speed-table-data="WorkflowRequestID">Action</th>
+                                        <th speed-table-data="Title">Division</th>
+                                        <th speed-table-data="customerName">Customer</th>
+                                        <th speed-table-data="jobNumber">Job No.</th>
+                                        <th speed-table-data="partName">CSAT</th>
+                                        <th speed-table-data="createdAt">NPS</th>
+                                        <th speed-table-data="crewName" id='crew-column'>Crew Name</th>
+                                        <th speed-table-data="machineUsed" id='machine-column'>Machine Used</th>
+                                        <th speed-table-data="status">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="speed-data-table" />

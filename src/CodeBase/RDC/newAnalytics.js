@@ -71,34 +71,41 @@ whenAnalyticsDependenciesLoaded = function () {
     }, 300);
 };
 
-/* ─── Schema Adapter (CustomerAPIList → legacy field names) ──
-// Same migration as report.js: NPSCategory/CSATCategory/Year no longer exist
-// as list fields, so Year is now derived client-side from "Created" and the
-// categories are derived from the raw "satisfaction"/"recommend" numbers via
-// MainApplication.ReportComponent's lookup helpers (kept in report.js).
-//
-// TWO FIELDS STILL UNRESOLVED — see TODOs below:
-//   - the free-text comment shown in "Recent Feedback" (old list used "Title"
-//     for this, but Title is now repurposed to hold Division, per report.js)
-//   - "ServiceLine" (the small theme tag under each feedback comment)
-// Both are left as blank-safe fallbacks so the page renders without erroring;
-// they need the real CustomerAPIList field names to be filled back in. */
+/* ─── Schema Adapter (CustomerAPIList → legacy field names) ─────────────
+   The list was migrated to "CustomerAPIList" with renamed/retyped columns.
+   NPSCategory/CSATCategory no longer exist as list fields — they're derived
+   here from the raw "recommend"/"satisfaction" numbers via the rating→category
+   lookup tables (MainApplication.nps / MainApplication.csat). There is no
+   dedicated comment field on the new list, so the feedback quote text falls
+   back to customerName, same as the name shown above it. */
 MainApplication.AnalyticsComponent.mapListItem = function (item) {
     return {
         ID: item.ID,
-        Created: item.Created,
-        Division: item.Title,
+        Title: item.customerName,
         CustomerName: item.customerName,
-        CrewName: item.crewName,
-        JobNumber: item.jobNumber,
+        ProjectTitle: item.projectTitle,
+        ServiceLine: item.serviceLine,
+        Division: item.Title,
         CSAT: item.satisfaction,
         NPS: item.recommend,
-        CSATCategory: MainApplication.ReportComponent.getCSATCategory(item.satisfaction),
-        NPSCategory: MainApplication.ReportComponent.getNPSCategory(item.recommend),
-        // TODO(Soliu): confirm real field names — no equivalent found yet on CustomerAPIList
-        Title: item.recommend,
-        ServiceLine: item.serviceLine
+        CSATCategory: MainApplication.AnalyticsComponent.getCSATCategory(item.satisfaction),
+        NPSCategory: MainApplication.AnalyticsComponent.getNPSCategory(item.recommend),
+        Created: item.Created,
+        CrewName: item.crewName,
+        JobNumber: item.jobNumber,
+        Approval_Status: item.status,
+        Year: item.year
     };
+};
+
+MainApplication.AnalyticsComponent.getCSATCategory = function (value) {
+    const idx = Math.round(parseFloat(value)) - 1;
+    return (MainApplication.csat && MainApplication.csat[idx]) ? MainApplication.csat[idx].category : "";
+};
+
+MainApplication.AnalyticsComponent.getNPSCategory = function (value) {
+    const idx = Math.round(parseFloat(value)) - 1;
+    return (MainApplication.nps && MainApplication.nps[idx]) ? MainApplication.nps[idx].category : "";
 };
 
 /* ─── Data Retrieval ──────────────────────────────────────────────────── */
@@ -106,15 +113,14 @@ MainApplication.AnalyticsComponent.retrieveSurveys = function () {
     const query = this.buildSurveyQuery();
 
     $spcontext.getListToItems(
-        configProperties.CSLIST.setting,
+        "CustomerAPIList",
         query,
         {
             merge: true,
             data: [
-                "ID", "Created", "Title", "customerName", "crewName",
-                "jobNumber", "satisfaction", "recommend", "serviceLine", "recommend"
-                // TODO(Soliu): add real field names for the ServiceLine / comment-text
-                // equivalents here once confirmed, then wire them into mapListItem above.
+                "ID", "customerName", "projectTitle", "serviceLine", "Title",
+                "satisfaction", "recommend", "Created", "crewName",
+                "jobNumber", "status", "year"
             ]
         },
         true,
@@ -129,10 +135,13 @@ MainApplication.AnalyticsComponent.retrieveSurveys = function () {
 };
 
 MainApplication.AnalyticsComponent.buildSurveyQuery = function () {
-    // "Year" was a derived/computed column and no longer exists on CustomerAPIList
-    // (same pattern as NPSCategory/CSATCategory) — year filtering now happens
-    // client-side in processAndRender, against "Created".
     const query = [{ ascending: "FALSE", orderby: "Created" }];
+    const year = this.activeYear;
+
+    if (year) {
+        query.push({ val: year,   type: "Text", field: "year", operator: "Eq" });
+    }
+
     return $spcontext.camlBuilder($spcontext.formQueryArrayGenerator(query));
 };
 
@@ -161,17 +170,8 @@ MainApplication.AnalyticsComponent.applyPeriodFilter = function (data) {
 
 /* ─── Main Processing ─────────────────────────────────────────────────── */
 MainApplication.AnalyticsComponent.processAndRender = function (data) {
-    // Year filter (was a server-side CAML filter on the old "Year" field;
-    // that field is gone, so filter client-side against "Created" instead)
-    const yearFiltered = this.activeYear
-        ? data.filter(item => {
-            const d = new Date(item.Created);
-            return !isNaN(d) && d.getFullYear() === this.activeYear;
-        })
-        : data;
-
-    // Apply period filter (Q1–Q4 / YTD)
-    const periodFiltered = this.applyPeriodFilter(yearFiltered);
+    // Apply period filter (Q1–Q4 / YTD) — this is separate from the SharePoint year query
+    const periodFiltered = this.applyPeriodFilter(data);
 
     // Division filter for most charts
     let filtered = periodFiltered;
