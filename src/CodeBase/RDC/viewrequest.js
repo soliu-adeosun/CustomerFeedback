@@ -35,12 +35,7 @@ function whenViewRequestLoaded() {
     // globalDefinitions.SetWorkflowRouting(customWorkflowEngine);
     AppRequest.itemId = $spcontext.getParameterByName("itemid", window.location.href);
 
-	if (MainApplication.isUserAnActor) {
-		MainApplication.ViewRequestComponent.recoverListData();
-	} else {
-		MainApplication.notyf.error("You are unauthorized to access this page... ");
-		$spcontext.redirect("#/", false);
-	}
+	MainApplication.ViewRequestComponent.recoverListData();
 }
 
 MainApplication.ViewRequestComponent.recoverListData = function () {

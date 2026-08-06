@@ -148,18 +148,8 @@ whenReportDependeciesLoaded = function () {
         MainApplication.ReportComponent.exportToExcel();
     });
 
-    if (MainApplication.isUserAnActor) {
-        MainApplication.ReportComponent.retrieveRequest();
-        globalDefinitions.closeLoader();
-    } else {
-        globalDefinitions.HandlerError("You are not authorized to access this resource...");
-        globalDefinitions.AuditLogManager_SaveLog({
-			Action: `Unauthorized action on CS Report page`,
-			Message: "User is not allowed to act on this request",
-		});
-        $spcontext.redirect("https://arridex.com", false);
-        globalDefinitions.closeLoader();
-    }
+    MainApplication.ReportComponent.retrieveRequest();
+    globalDefinitions.closeLoader();
 };
 
 // ─── Schema Adapter (CustomerAPIList → legacy field names) ──

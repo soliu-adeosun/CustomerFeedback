@@ -97,7 +97,8 @@ MainApplication.AnalyticsComponent.mapListItem = function (item) {
         NPSCategory: MainApplication.ReportComponent.getNPSCategory(item.recommend),
         // TODO(Soliu): confirm real field names — no equivalent found yet on CustomerAPIList
         Title: item.recommend,
-        ServiceLine: item.serviceLine
+        ServiceLine: item.serviceLine,
+        Comment: item.improvement
     };
 };
 
@@ -112,7 +113,7 @@ MainApplication.AnalyticsComponent.retrieveSurveys = function () {
             merge: true,
             data: [
                 "ID", "Created", "Title", "customerName", "crewName",
-                "jobNumber", "satisfaction", "recommend", "serviceLine", "recommend"
+                "jobNumber", "satisfaction", "recommend", "serviceLine", "improvement"
                 // TODO(Soliu): add real field names for the ServiceLine / comment-text
                 // equivalents here once confirmed, then wire them into mapListItem above.
             ]
@@ -590,7 +591,7 @@ MainApplication.AnalyticsComponent.renderRecentFeedback = function (data) {
                         ${new Date(item.Created).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}
                     </span>
                 </div>
-                <div class="c-text">"${item.Title || "No comment provided."}"</div>
+                <div class="c-text">"${item.Comment || "No comment provided."}"</div>
                 <div class="c-theme">${item.ServiceLine || "Service"}</div>
             </div>
         `);
