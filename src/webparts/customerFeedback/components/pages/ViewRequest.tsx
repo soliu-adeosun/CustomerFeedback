@@ -30,7 +30,7 @@ export default class ViewRequest extends React.Component<{}, {}> {
 							</div>
 
 							{/* <div className="sec-lbl"><div className="sec-lbl-txt">CSAT — Product Satisfaction</div><div className="sec-lbl-line" /></div> */}
-							<div className="rating-q">1. How satisfied are you with our product(s)?  <small>1 — lowest, 10 — highest </small></div>
+							<div className="rating-q">1. How satisfied are you with our product(s)/service(s)?  <small>1 — lowest, 10 — highest </small></div>
 							<div className="rating-row" id="am-csat-row" />
 							{/* <div className="rating-legend"><span>1 — Very Dissatisfied</span><span>10 — Extremely Satisfied!</span></div> */}
 							<div className="field-group" style={{ marginTop: 20 }}>
@@ -38,7 +38,7 @@ export default class ViewRequest extends React.Component<{}, {}> {
 								<textarea readOnly className="field-textarea" id="am-csat-comment" speed-bind="improvement" placeholder="Feedback on product quality, service delivery, specifications…" defaultValue={""} />
 							</div>
 							{/* <div className="sec-lbl" style={{ marginTop: 20 }}><div className="sec-lbl-txt">NPS — Likelihood to Recommend</div><div className="sec-lbl-line" /></div> */}
-							<div className="rating-q">2. How likely are you to recommend RusselSmith?  <small>1 — lowest, 10 — highest </small></div>
+							<div className="rating-q">2. How likely are you to recommend Arridex?  <small>1 — lowest, 10 — highest </small></div>
 							<div className="rating-row" id="am-nps-row" />
 							{/* <div className="rating-legend"><span>1 — Not at all likely</span><span>10 — Absolutely!</span></div> */}
 						</div>

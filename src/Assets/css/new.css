@@ -79,7 +79,7 @@ html, body {
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-.sb-emblem svg, .sb-emblem img { width: 36px; height: 30px; }
+.sb-emblem svg, .sb-emblem img { width: 36px; }
 .sb-name { font-size: 13.5px; font-weight: 700; color: #fff; letter-spacing: -.02em; line-height: 1.2; }
 .sb-sub  { font-size: 9.5px;  color: rgba(255,255,255,.35); text-transform: uppercase; letter-spacing: .09em; margin-top: 1px; }
 
