@@ -42,8 +42,12 @@ div[data-automationid="AppChrome"] {
   border: 0 !important;
 }
 
-div[data-automation-id="contentScrollRegion"] {
+/* div[data-automation-id="contentScrollRegion"] {
   overflow: hidden !important;
+} */
+
+div[data-automationid="SimpleFooter"] a {
+  display: none !important;
 }
 
 a {

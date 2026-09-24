@@ -133,7 +133,12 @@ MainApplication.AnalyticsComponent.buildSurveyQuery = function () {
     // "Year" was a derived/computed column and no longer exists on CustomerAPIList
     // (same pattern as NPSCategory/CSATCategory) — year filtering now happens
     // client-side in processAndRender, against "Created".
-    const query = [{ ascending: "FALSE", orderby: "Created" }];
+    const query = [
+        { ascending: "FALSE", orderby: "Created" },
+        // Only return rows that actually have a number in both fields
+        { field: "satisfaction", type: "Number", operator: "IsNotNull" },
+        { field: "recommend",   type: "Number", operator: "IsNotNull" }
+    ];
     return $spcontext.camlBuilder($spcontext.formQueryArrayGenerator(query));
 };
 
