@@ -412,7 +412,7 @@ MainApplication.AnalyticsComponent.renderCSATDistribution = function (data) {
 
 /* ─── NPS Segments ────────────────────────────────────────────────────── */
 MainApplication.AnalyticsComponent.renderNPSSegments = function (data) {
-    const total = data.length || 1;
+    const total = data.length || 0;
     const promoters = data.filter(i => (parseFloat(i.NPS) || 0) >= 8).length;
     const passives = data.filter(i => { const v = parseFloat(i.NPS) || 0; return v >= 5 && v <= 7; }).length;
     const detractors = data.filter(i => (parseFloat(i.NPS) || 0) <= 4).length;
