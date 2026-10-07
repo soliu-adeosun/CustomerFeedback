@@ -91,12 +91,10 @@ export default class Analytics extends React.Component<{}, {}> {
                                 <div className="kpi-sub">Out of 10 · Target: 8.0+</div> */}
                             </div>
 
-                            <div className="kpi-card" style={{ ['--accent' as any]: 'var(--green)' }}>
+                            {/* <div className="kpi-card" style={{ ['--accent' as any]: 'var(--green)' }}>
                                 <div className="kpi-lbl">Satisfaction Rate</div>
                                 <div className="kpi-val mono" id="ov-sat">—</div>
-                                {/* <span className="kpi-delta delta-up" id="ov-d-sat">▲ +6% vs prior</span>
-                                <div className="kpi-sub">Scores 8–10 · Target: 75%</div> */}
-                            </div>
+                            </div> */}
 
                             <div className="kpi-card" style={{ ['--accent' as any]: 'var(--txt3)' }}>
                                 <div className="kpi-lbl">Total Responses</div>

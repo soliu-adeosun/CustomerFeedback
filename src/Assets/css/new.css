@@ -412,7 +412,7 @@ html, body {
 .period-meta  { font-family: var(--mono); font-size: 11px; color: var(--txt3); }
 
 /* KPI strip */
-.kpi-strip { display: grid; grid-template-columns: repeat(4,1fr); gap: 11px; margin-bottom: 18px; }
+.kpi-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 11px; margin-bottom: 18px; }
 .kpi-card {
   background: var(--card); border: 1.5px solid var(--border);
   border-radius: var(--r-lg); padding: 16px 18px 14px;

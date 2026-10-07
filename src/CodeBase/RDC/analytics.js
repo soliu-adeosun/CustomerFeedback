@@ -231,20 +231,25 @@ MainApplication.AnalyticsComponent.processAndRender = function (data) {
 // };
 
 MainApplication.AnalyticsComponent.updateKPIs = function (filtered) {
-    const total = filtered.length || 1;
+    const total = filtered.length * 10;
+    console.log("Total Responses:", filtered.length, "Total for NPS calculation:", total);
 
     // NPS Score using promoter/detractor formula
     const promoters  = filtered.filter(i => (i.NPSCategory === "Promoter")).length;
     const passives   = filtered.filter(i => (i.NPSCategory === "Passive")).length;
     const detractors = filtered.filter(i => (i.NPSCategory === "Detractor")).length;
     const npsScore   = Math.round((((promoters + passives) - detractors) / total) * 100);
-    $("#ov-nps").text((npsScore >= 0 ? "+" : "") + npsScore);
+    // $("#ov-nps").text((npsScore >= 0 ? "+" : "") + npsScore);
+    const avgNPS = filtered.length
+        ? (filtered.reduce((sum, i) => sum + (parseFloat(i.NPS) || 0), 0) / total)*100
+        : "0.0";
+    $("#ov-nps").text(avgNPS + "%");
 
     // CSAT Average
     const avgCSAT = filtered.length
-        ? (filtered.reduce((sum, i) => sum + (parseFloat(i.CSAT) || 0), 0) / total).toFixed(1)
+        ? (filtered.reduce((sum, i) => sum + (parseFloat(i.CSAT) || 0), 0) / total)*100
         : "0.0";
-    $("#ov-csat").text(avgCSAT);
+    $("#ov-csat").text(avgCSAT + "%");
 
     // Satisfaction Rate (CSAT 8–10)
     const satisfied = filtered.filter(i => (parseFloat(i.CSAT) || 0) >= 8).length;
